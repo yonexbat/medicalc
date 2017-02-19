@@ -27,6 +27,7 @@ export class MediInputComponent implements OnInit {
   medisFound: Observable<MediData[]>;
   private mediSearchTearm = new Subject<string>();
   medi: MediData;
+  mediName: string;
 
 
   constructor(private mediInputService: MediserviceService) { }
@@ -56,6 +57,6 @@ export class MediInputComponent implements OnInit {
   selectMedi(medi: MediData)
   {
     this.medi = medi;
-    alert("Medi selected");
+    this.mediName = medi.Name;
   }
 }
