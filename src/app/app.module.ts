@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { MediInputComponent } from './medi-input/medi-input.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MediInputComponent
   ],
   imports: [
     BrowserModule,
