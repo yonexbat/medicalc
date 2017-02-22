@@ -1,4 +1,5 @@
-import {Component, OnInit } from '@angular/core';
+import {Input, Component, OnInit, OnChanges, 
+        SimpleChanges, SimpleChange,ChangeDetectionStrategy, DoCheck } from '@angular/core';
 import {MediserviceService} from './../mediservice.service';
 import {Observable} from 'rxjs/Observable';
 import {Subject } from 'rxjs/Subject';
@@ -18,16 +19,23 @@ import 'rxjs/add/operator/distinctUntilChanged';
   selector: 'app-medi-input',
   templateUrl: './medi-input.component.html',
   styleUrls: ['./medi-input.component.css'],
-  providers: [MediserviceService]
+  providers: [MediserviceService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MediInputComponent implements OnInit {
+export class MediInputComponent implements OnInit, DoCheck {
 
+  @Input()
   weight: number;
+
+  @Input()
   dose: number;
+
   medisFound: Observable<MediData[]>;
   private mediSearchTearm = new Subject<string>();
   medi: MediData;
   mediName: string;
+  
+  
 
 
   constructor(private mediInputService: MediserviceService) { }
@@ -47,6 +55,12 @@ export class MediInputComponent implements OnInit {
         console.log(error);
         return Observable.of<MediData[]>([]);
       });
+
+  }
+
+ 
+  ngDoCheck() {
+    //debugger;
   }
 
   // Push a search term into the observable stream.
@@ -58,5 +72,11 @@ export class MediInputComponent implements OnInit {
   {
     this.medi = medi;
     this.mediName = medi.Name;
+    this.mediSearchTearm.next('');
   }
+
+  quantity() : number {
+    return this.dose*this.weight;  
+  }
+
 }

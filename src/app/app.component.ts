@@ -8,5 +8,5 @@ import {MediInputComponent} from './medi-input/medi-input.component'
 })
 
 export class AppComponent {
-  title = 'Medikamentenrechner';
+  title = 'Medirechner';
 }

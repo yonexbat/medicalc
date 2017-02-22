@@ -1,20 +1,69 @@
 <div>
 
-  <!-- Medikament -->
-  <label>Medikament</label>
-  <input #searchBox id="search-box" (keyup)="searchMedi(searchBox.value)" 
-    [(ngModel)] = "mediName"/>
-  <div>
-    <div *ngFor="let medi of medisFound | async" class="search-result"
-           (click)="selectMedi(medi)" >
-      {{medi.Name}}
-    </div>
-  </div>
-  
-  <label>Gewicht</label>
-  <input [(ngModel)]="weight" placeholder="Gewicht" />
+  <div class="container-fluid">
 
-  <label>Dosierung</label>
-  <input [(ngModel)]="dose" placeholder="Dosierung" />
+    <!-- Medikament -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Medikament</label>
+      </div>
+      <div class="col-sm-8">
+        <input #searchBox id="search-box" (keyup)="searchMedi(searchBox.value)" 
+          [(ngModel)] = "mediName"/>
+          <div *ngFor="let medi of medisFound | async" class="search-result"
+          (click)="selectMedi(medi)" >
+            {{medi.Name}}
+          </div>
+      </div>
+    </div>
+
+    <!-- Gewicht -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Gewicht</label>
+      </div>
+      <div class="col-sm-8">
+        <input [(ngModel)]="weight" placeholder="Gewicht" type="number"/>
+      </div>
+    </div>
+
+    <!-- Dosierung -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Dosierung</label>
+      </div>
+      <div class="col-sm-8">
+        <input [(ngModel)]="dose" placeholder="Dosierung" type="number"/>
+      </div>
+    </div>    
+
+  </div>
+  <hr/>
+
+  <div class="container-fluid" *ngIf="medi && quantity()" >
+  
+    <!-- Menge -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Menge</label>   
+      </div>
+
+      <div class="col-sm-8">
+        {{quantity()}}
+      </div>
+    </div>
+
+    <!-- Medi -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Medi</label>  
+      </div>
+
+      <div class="col-sm-8">
+        {{medi.Name}}
+      </div>
+    </div>
+
+  </div>
 
 </div>
