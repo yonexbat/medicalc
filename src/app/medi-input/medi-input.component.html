@@ -20,7 +20,7 @@
     <!-- Gewicht -->
     <div class="row">
       <div class="col-sm-4">
-        <label>Gewicht</label>
+        <label>Gewicht (kg)</label>
       </div>
       <div class="col-sm-8">
         <input [(ngModel)]="weight" placeholder="Gewicht" type="number"/>
@@ -30,7 +30,7 @@
     <!-- Dosierung -->
     <div class="row">
       <div class="col-sm-4">
-        <label>Dosierung</label>
+        <label>Dosierung (ml/kg)</label>
       </div>
       <div class="col-sm-8">
         <input [(ngModel)]="dose" placeholder="Dosierung" type="number"/>
@@ -42,17 +42,6 @@
 
   <div class="container-fluid" *ngIf="medi && quantity()" >
   
-    <!-- Menge -->
-    <div class="row">
-      <div class="col-sm-4">
-        <label>Menge</label>   
-      </div>
-
-      <div class="col-sm-8">
-        {{quantity()}}
-      </div>
-    </div>
-
     <!-- Medi -->
     <div class="row">
       <div class="col-sm-4">
@@ -63,6 +52,41 @@
         {{medi.Name}}
       </div>
     </div>
+
+    <!-- Gewicht -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Gewicht</label>  
+      </div>
+
+      <div class="col-sm-8">
+        {{weight}} kg
+      </div>
+    </div>
+
+    <!-- Dosierung -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Dosierung</label>  
+      </div>
+
+      <div class="col-sm-8">
+        {{dose}} ml/kg
+      </div>
+    </div>
+
+    <!-- Menge -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Menge</label>   
+      </div>
+
+      <div class="col-sm-8">
+        <b>{{quantity()}} ml</b>
+      </div>
+    </div>
+
+   
 
   </div>
 

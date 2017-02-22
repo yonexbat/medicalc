@@ -33,8 +33,16 @@ export class MediserviceService {
 
   private getMediDataInternal(): MediData[] {
     let result = [
-      new MediData(3, 'Fenta'),
-      new MediData(4, 'Cocaine'),
+      new MediData(1, 'Afoxolaner'),
+      new MediData(2, 'Aminoacridin'),
+      new MediData(3, 'Magnesiumsulfat'),
+      new MediData(4, 'Maropitant'),
+      new MediData(5, 'Fenta'),
+      new MediData(6, 'Wismutaluminat'),
+      new MediData(7, 'Meloxicam'),
+      new MediData(8, 'Glucose'),
+      new MediData(9, 'Guajacol'),
+      new MediData(10, 'Cocaine'),
     ];
 
     return result;
