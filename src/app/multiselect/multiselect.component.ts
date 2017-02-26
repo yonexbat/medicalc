@@ -31,7 +31,8 @@ export class MultiselectComponent implements OnInit {
   constructor(private mediInputService: MediserviceService) { }
 
   ngOnInit() {
-         this.medisFound = this.mediSearchTearm
+
+    this.medisFound = this.mediSearchTearm
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term
       .distinctUntilChanged()   // ignore if next search term is same as previous
       .switchMap(term => term   // switch to new observable each time the term changes
@@ -44,6 +45,22 @@ export class MultiselectComponent implements OnInit {
         console.log(error);
         return Observable.of<MediData[]>([]);
       });
+
+    this.medisFound.subscribe(mediList => 
+      {
+        this.medisFoundChanged(mediList);          
+      }
+    );
+
+  }
+
+  medisFoundChanged(mediList: MediData[])
+  {
+    if(mediList.length == 1)
+    {
+      let medi = mediList[0];
+      this.selectMedi(medi);
+    }
   }
 
     // Push a search term into the observable stream.
