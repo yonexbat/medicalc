@@ -24,40 +24,19 @@ import 'rxjs/add/operator/distinctUntilChanged';
 })
 export class MediInputComponent implements OnInit, DoCheck {
 
-  @Input()
+
   weight: number;
-
-  @Input()
   dose: number;
-
-  medisFound: Observable<MediData[]>;
-  private mediSearchTearm = new Subject<string>();
   medi: MediData;
-  mediName: string;
   
   
 
 
   constructor(private mediInputService: MediserviceService) { }
 
-  ngOnInit() {
-
-      this.medisFound = this.mediSearchTearm
-      .debounceTime(300)        // wait 300ms after each keystroke before considering the term
-      .distinctUntilChanged()   // ignore if next search term is same as previous
-      .switchMap(term => term   // switch to new observable each time the term changes
-        // return the http search observable
-        ? this.mediInputService.searchMediData(term)
-        // or the observable of empty heroes if there was no search term
-        : Observable.of<MediData[]>([]))
-      .catch(error => {
-        // TODO: add real error handling
-        console.log(error);
-        return Observable.of<MediData[]>([]);
-      });
+  ngOnInit() {      
 
   }
-
  
   ngDoCheck() {
     //debugger;
@@ -67,18 +46,6 @@ export class MediInputComponent implements OnInit, DoCheck {
   {
     this.medi = medi;
     debugger;
-  }
-
-  // Push a search term into the observable stream.
-  searchMedi(mediTerm: string): void {
-    this.mediSearchTearm.next(mediTerm);
-  }  
-
-  selectMedi(medi: MediData)
-  {
-    this.medi = medi;
-    this.mediName = medi.Name;
-    this.mediSearchTearm.next('');
   }
 
   quantity() : number {
