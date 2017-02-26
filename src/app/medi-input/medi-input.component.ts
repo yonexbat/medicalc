@@ -24,15 +24,11 @@ import 'rxjs/add/operator/distinctUntilChanged';
 })
 export class MediInputComponent implements OnInit, DoCheck {
 
-
   weight: number;
   dose: number;
   medi: MediData;
   
-  
-
-
-  constructor(private mediInputService: MediserviceService) { }
+  constructor() { }
 
   ngOnInit() {      
 
