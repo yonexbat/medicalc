@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { MediInputComponent } from './medi-input/medi-input.component';
+import { MultiselectComponent } from './multiselect/multiselect.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MediInputComponent
+    MediInputComponent,
+    MultiselectComponent
   ],
   imports: [
     BrowserModule,

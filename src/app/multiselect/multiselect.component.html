@@ -1,0 +1,6 @@
+<input #searchBox id="search-box" (keyup)="searchMedi(searchBox.value)" 
+          [(ngModel)] = "mediName"/>
+
+<div *ngFor="let medi of medisFound | async" class="search-result" (click)="selectMedi(medi)" >
+  {{medi.Name}}
+</div>

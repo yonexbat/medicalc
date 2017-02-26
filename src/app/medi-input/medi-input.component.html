@@ -2,20 +2,16 @@
 
   <div class="container-fluid">
 
-    <!-- Medikament -->
+    <!-- Medikament2 -->
     <div class="row">
       <div class="col-sm-4">
         <label>Medikament</label>
       </div>
       <div class="col-sm-8">
-        <input #searchBox id="search-box" (keyup)="searchMedi(searchBox.value)" 
-          [(ngModel)] = "mediName"/>
-          <div *ngFor="let medi of medisFound | async" class="search-result"
-          (click)="selectMedi(medi)" >
-            {{medi.Name}}
-          </div>
+        <app-multiselect (onMediSelected)="onMediSelected($event)"></app-multiselect>       
       </div>
     </div>
+
 
     <!-- Gewicht -->
     <div class="row">
