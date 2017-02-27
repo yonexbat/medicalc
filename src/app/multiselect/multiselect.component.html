@@ -1,5 +1,5 @@
 <input #searchBox id="search-box" (keyup)="searchMedi(searchBox.value)" 
-          [(ngModel)] = "mediName"/>
+          [(ngModel)] = "mediName" name="mediName"/>
 
 <div *ngFor="let medi of medisFound | async" class="search-result" (click)="selectMedi(medi)" >
   {{medi.Name}}
