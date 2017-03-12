@@ -1,0 +1,100 @@
+[
+    {   
+        "Id" : "1", 
+        "Name" : "Afoxolaner", 
+        "ActiveSubstance" : "MeinWirkstoff",
+        "Concentration" : "23",
+        "MinDose" : "1",
+        "MaxDose" : "100"
+    },
+    
+    {   
+        "Id" : "2", 
+        "Name" : "Aminoacridin", 
+        "ActiveSubstance" : "MeinWirkstoff",
+        "Concentration" : "23",
+        "MinDose" : "1",
+        "MaxDose" : "100"
+    },    
+
+    {   
+        "Id" : "3", 
+        "Name" : "Magnesiumsulfat", 
+        "ActiveSubstance" : "MeinWirkstoff",
+        "Concentration" : "23",
+        "MinDose" : "1",
+        "MaxDose" : "100"
+    },
+
+    
+    {   
+        "Id" : "4", 
+        "Name" : "Maropitant", 
+        "ActiveSubstance" : "MeinWirkstoff",
+        "Concentration" : "23",
+        "MinDose" : "1",
+        "MaxDose" : "100"
+    },
+
+    
+    {   
+        "Id" : "5", 
+        "Name" : "Fenta", 
+        "ActiveSubstance" : "MeinWirkstoff",
+        "Concentration" : "23",
+        "MinDose" : "1",
+        "MaxDose" : "100"
+    },
+
+    
+    {   
+        "Id" : "6", 
+        "Name" : "Wismutaluminat", 
+        "ActiveSubstance" : "MeinWirkstoff",
+        "Concentration" : "23",
+        "MinDose" : "1",
+        "MaxDose" : "100"
+    },
+
+    
+    {   
+        "Id" : "7", 
+        "Name" : "Meloxicam", 
+        "ActiveSubstance" : "MeinWirkstoff",
+        "Concentration" : "23",
+        "MinDose" : "1",
+        "MaxDose" : "100"
+    },
+    
+    
+    {   
+        "Id" : "8", 
+        "Name" : "Glucose", 
+        "ActiveSubstance" : "MeinWirkstoff",
+        "Concentration" : "23",
+        "MinDose" : "1",
+        "MaxDose" : "100"
+    },
+
+    
+    {   
+        "Id" : "9", 
+        "Name" : "Guajacol", 
+        "ActiveSubstance" : "MeinWirkstoff",
+        "Concentration" : "23",
+        "MinDose" : "1",
+        "MaxDose" : "100"
+    },
+    
+    
+    {   
+        "Id" : "10", 
+        "Name" : "Cocaine", 
+        "ActiveSubstance" : "MeinWirkstoff",
+        "Concentration" : "23",
+        "MinDose" : "1",
+        "MaxDose" : "100"
+    }        
+
+
+]
