@@ -2,7 +2,7 @@
 
   <form  #inputForm="ngForm"  class="container-fluid">
 
-    <!-- Medikament2 -->
+    <!-- Medikament -->
     <div class="row">
       <div class="col-sm-4">
         <label>Medikament</label>
@@ -67,6 +67,26 @@
       </div>
     </div>
 
+     <div class="row">
+      <div class="col-sm-4">
+        <label>Konzentration</label>  
+      </div>
+
+      <div class="col-sm-8">
+        {{medi.Concentration}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Mögliche Dosierung</label>  
+      </div>
+
+      <div class="col-sm-8">
+        von {{medi.MinDose}} bis {{medi.MaxDose}}
+      </div>
+    </div>
+
     <!-- Gewicht -->
     <div class="row">
       <div class="col-sm-4">
@@ -96,7 +116,7 @@
       </div>
 
       <div class="col-sm-8">
-        <b>{{quantity()}} ml</b>
+        <b>{{quantity()}} {{medi.Unit}}</b>
       </div>
     </div>
 

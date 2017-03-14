@@ -105,7 +105,7 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
   }
 
   quantity() : number {
-    return this.dose*this.weight;  
+    return this.dose*this.weight*this.medi.Concentration;  
   }
 
 }

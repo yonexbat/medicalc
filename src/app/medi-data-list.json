@@ -2,98 +2,98 @@
     {   
         "Id" : "1", 
         "Name" : "Afoxolaner", 
-        "ActiveSubstance" : "MeinWirkstoff",
         "Concentration" : "23",
         "MinDose" : "1",
-        "MaxDose" : "100"
+        "MaxDose" : "100",
+        "Unit" : "ml"
     },
     
     {   
         "Id" : "2", 
         "Name" : "Aminoacridin", 
-        "ActiveSubstance" : "MeinWirkstoff",
         "Concentration" : "23",
         "MinDose" : "1",
-        "MaxDose" : "100"
+        "MaxDose" : "100",
+        "Unit" : "ml"        
     },    
 
     {   
         "Id" : "3", 
         "Name" : "Magnesiumsulfat", 
-        "ActiveSubstance" : "MeinWirkstoff",
         "Concentration" : "23",
         "MinDose" : "1",
-        "MaxDose" : "100"
+        "MaxDose" : "100",
+        "Unit" : "ml"        
     },
 
     
     {   
         "Id" : "4", 
         "Name" : "Maropitant", 
-        "ActiveSubstance" : "MeinWirkstoff",
         "Concentration" : "23",
         "MinDose" : "1",
-        "MaxDose" : "100"
+        "MaxDose" : "100",
+        "Unit" : "ml"        
     },
 
     
     {   
         "Id" : "5", 
         "Name" : "Fenta", 
-        "ActiveSubstance" : "MeinWirkstoff",
         "Concentration" : "23",
         "MinDose" : "1",
-        "MaxDose" : "100"
+        "MaxDose" : "100",
+        "Unit" : "ml"        
     },
 
     
     {   
         "Id" : "6", 
         "Name" : "Wismutaluminat", 
-        "ActiveSubstance" : "MeinWirkstoff",
         "Concentration" : "23",
         "MinDose" : "1",
-        "MaxDose" : "100"
+        "MaxDose" : "100",
+        "Unit" : "ml"        
     },
 
     
     {   
         "Id" : "7", 
         "Name" : "Meloxicam", 
-        "ActiveSubstance" : "MeinWirkstoff",
         "Concentration" : "23",
         "MinDose" : "1",
-        "MaxDose" : "100"
+        "MaxDose" : "100",
+        "Unit" : "ml"        
     },
     
     
     {   
         "Id" : "8", 
         "Name" : "Glucose", 
-        "ActiveSubstance" : "MeinWirkstoff",
         "Concentration" : "23",
         "MinDose" : "1",
-        "MaxDose" : "100"
+        "MaxDose" : "100",
+        "Unit" : "ml"        
     },
 
     
     {   
         "Id" : "9", 
         "Name" : "Guajacol", 
-        "ActiveSubstance" : "MeinWirkstoff",
         "Concentration" : "23",
         "MinDose" : "1",
-        "MaxDose" : "100"
+        "MaxDose" : "100",
+        "Unit" : "ml"        
     },
     
     
     {   
         "Id" : "10", 
         "Name" : "Cocaine", 
-        "ActiveSubstance" : "MeinWirkstoff",
         "Concentration" : "23",
         "MinDose" : "1",
-        "MaxDose" : "100"
+        "MaxDose" : "100",
+        "Unit" : "ml"        
     }        
 
 
