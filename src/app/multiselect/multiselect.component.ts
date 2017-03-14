@@ -21,12 +21,11 @@ import 'rxjs/add/operator/distinctUntilChanged';
 })
 export class MultiselectComponent implements OnInit {
 
-  medisFound: Observable<MediData[]>;
+  medisFound: Observable<string[]>;
   private mediSearchTearm = new Subject<string>();
-  medi: MediData;
   mediName: string;
 
-  @Output() onMediSelected = new EventEmitter<MediData>();
+  @Output() onMediSelected = new EventEmitter<string>();
 
   constructor(private mediInputService: MediserviceService) { }
 
@@ -39,22 +38,20 @@ export class MultiselectComponent implements OnInit {
         // return the http search observable
         ? this.mediInputService.searchMediData(term)
         // or the observable of empty heroes if there was no search term
-        : Observable.of<MediData[]>([]))
+        : Observable.of<string[]>([]))
       .catch(error => {
         // TODO: add real error handling
         console.log(error);
-        return Observable.of<MediData[]>([]);
+        return Observable.of<string[]>([]);
       });
 
-    this.medisFound.subscribe(mediList => 
-      {
+    this.medisFound.subscribe(mediList =>  {
         this.medisFoundChanged(mediList);          
-      }
-    );
+    });
 
   }
 
-  medisFoundChanged(mediList: MediData[])
+  medisFoundChanged(mediList: string[])
   {
     if(mediList.length == 1)
     {
@@ -68,10 +65,9 @@ export class MultiselectComponent implements OnInit {
     this.mediSearchTearm.next(mediTerm);
   }  
 
-  selectMedi(medi: MediData)
+  selectMedi(medi: string)
   {
-    this.medi = medi;
-    this.mediName = medi.Name;
+    this.mediName = medi;
     this.mediSearchTearm.next('');
     this.onMediSelected.emit(medi);
   }

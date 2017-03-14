@@ -12,6 +12,17 @@
       </div>
     </div>
 
+    <!-- Konzentration -->
+    <div class="row"  *ngIf="medisForMediName">
+      <div class="col-sm-4">
+        <label>Konzentration</label>
+      </div>
+      <div class="col-sm-8">
+        <select>
+          <option *ngFor="let medi of medisForMediName | async" [ngValue]="medi.Id">{{medi.Concentration}} mg / {{medi.Unit}} </option>
+        </select>       
+      </div>
+    </div>
 
     <!-- Gewicht -->
     <div class="row">
@@ -54,20 +65,21 @@
   </form>
   <hr/>
 
-  <div class="container-fluid" *ngIf="medi && quantity()" >
+  <div class="container-fluid" >
   
-    <!-- Medi -->
-    <div class="row">
+    <!-- Mediname -->
+    <div class="row"  *ngIf="mediName">
       <div class="col-sm-4">
         <label>Medi</label>  
       </div>
 
       <div class="col-sm-8">
-        {{medi.Name}}
+        {{mediName}}
       </div>
     </div>
 
-     <div class="row">
+    <!-- Konzentration -->
+    <div class="row" *ngIf="medi">
       <div class="col-sm-4">
         <label>Konzentration</label>  
       </div>
@@ -77,7 +89,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="medi">
       <div class="col-sm-4">
         <label>Mögliche Dosierung</label>  
       </div>
@@ -88,7 +100,7 @@
     </div>
 
     <!-- Gewicht -->
-    <div class="row">
+    <div class="row" *ngIf="weight">
       <div class="col-sm-4">
         <label>Gewicht</label>  
       </div>
@@ -99,7 +111,7 @@
     </div>
 
     <!-- Dosierung -->
-    <div class="row">
+    <div class="row" *ngIf="dose">
       <div class="col-sm-4">
         <label>Dosierung</label>  
       </div>
@@ -110,7 +122,7 @@
     </div>
 
     <!-- Menge -->
-    <div class="row">
+    <div class="row" *ngIf="quantity() && medi">
       <div class="col-sm-4">
         <label>Menge</label>   
       </div>

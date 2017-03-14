@@ -7,6 +7,15 @@
         "MaxDose" : "100",
         "Unit" : "ml"
     },
+
+    {   
+        "Id" : "11", 
+        "Name" : "Afoxolaner", 
+        "Concentration" : "4",
+        "MinDose" : "1",
+        "MaxDose" : "100",
+        "Unit" : "ml"
+    },
     
     {   
         "Id" : "2", 

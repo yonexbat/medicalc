@@ -37,6 +37,9 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
   weight: number;
   dose: number;
   medi: MediData;
+  mediName: string;
+  medisForMediName: Observable<MediData[]>;  
+  private mediNameSubject = new Subject<string>(); 
 
   formFieldErrors = {
     'weight': '',
@@ -46,20 +49,32 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
   @ViewChild('inputForm') currentForm: NgForm;
   formSubscribed: boolean = false;
   
-  constructor() { }
+ constructor(private mediInputService: MediserviceService) { }
 
   ngOnInit() {      
-
+    this.medisForMediName = this.mediNameSubject
+      .switchMap(mediName => {
+          if(mediName)
+          {
+            return this.mediInputService.getMedisForMediName(mediName);
+          }
+          return Observable.of<MediData[]>([]);
+      })
+      .catch(error => {
+        console.log(error);
+        return Observable.of<MediData[]>([]);
+      });      
   }
  
   ngDoCheck() {
     //debugger;
   }
 
-  onMediSelected(medi: MediData)
+  onMediSelected(mediName: string)
   {
-    this.medi = medi;
-    //debugger;
+    this.mediName = mediName;
+    this.mediNameSubject.next(mediName);
+    
   }
 
   ngAfterViewChecked() {
@@ -105,7 +120,11 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
   }
 
   quantity() : number {
-    return this.dose*this.weight*this.medi.Concentration;  
+    if(this.medi != null )
+    {
+      return this.dose*this.weight*this.medi.Concentration;  
+    }
+    return null;
   }
 
 }
