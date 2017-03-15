@@ -14,6 +14,7 @@ import { NgForm, FormControl, AbstractControl } from '@angular/forms';
 import {MediserviceService} from './../mediservice.service';
 import {Observable} from 'rxjs/Observable';
 import {Subject } from 'rxjs/Subject';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {MediData} from '../medi-data';
 
 // Observable class extensions
@@ -38,8 +39,10 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
   weight: number;
   dose: number;
   medi: MediData;
+  mediObservable = new BehaviorSubject<MediData>(null);
   mediName: string;
-  medisForMediName: Observable<MediData[]>;  
+  medisForMediName: Observable<MediData[]>;
+   
   medisForMediNameArray: MediData[];
 
   private mediNameSubject = new Subject<string>(); 
@@ -54,7 +57,9 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
   
  constructor(private mediInputService: MediserviceService) { }
 
-  ngOnInit() {      
+  ngOnInit() {   
+
+    //When new agent is selected.   
     this.medisForMediName = this.mediNameSubject
       .switchMap(mediName => {
           if(mediName)
@@ -67,8 +72,20 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
         console.log(error);
         return Observable.of<MediData[]>([]);
       });
+
+    //When Medis for agent arrive  
     this.medisForMediName.subscribe(medis => {
+
       this.medisForMediNameArray = medis;
+
+      if(medis && medis.length === 1)
+      {
+        this.mediObservable.next(medis[0]); 
+      }
+      else {
+        this.mediObservable.next(null);
+      }
+
     });     
   }
  
@@ -96,12 +113,11 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
         });
 
         this.mediInputService.getMedi(id).then(medi => {
-            //this.medi = medi;
-          
-          
-        }).catch(error => {alert(error);
-        
-      });
+          this.mediObservable.next(medi);
+          this.medi = medi;                    
+        }).catch(error => {
+            alert(error);        
+        });
     }
   }
 
@@ -148,9 +164,10 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
   }
 
   quantity() : number {
-    if(this.medi != null && this.dose && this.dose != 0)
+    if(this.mediObservable.getValue() != null && this.dose && this.dose != 0)
     {
-      return this.dose*this.weight*1/this.medi.Concentration;  
+      let con = this.mediObservable.getValue().Concentration;
+      return this.dose*this.weight*1/con;  
     }
     return null;
   }

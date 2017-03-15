@@ -13,13 +13,13 @@
     </div>
 
     <!-- Konzentration -->
-    <div class="row"  *ngIf="medisForMediName">
+    <div class="row"  [hidden]="!((medisForMediName | async)?.length > 1)">
       <div class="col-sm-4">
         <label>Konzentration</label>
       </div>
       <div class="col-sm-8">
         <select  name="mediId"   (change)="onMediIdSelected($event)">
-          <option *ngFor="let medi of medisForMediName | async" [ngValue]="medi.Id" value="{{medi.Id}}">{{medi.Concentration}} mg / {{medi.Unit}} </option>
+          <option *ngFor="let medi of medisForMediName | async" [ngValue]="medi.Id" [value]="medi.Id">{{medi.Concentration}} mg/{{medi.Unit}} </option>
         </select>       
       </div>
     </div>
@@ -46,7 +46,7 @@
     <!-- Dosierung -->
     <div class="row">
       <div class="col-sm-4">
-        <label>Dosierung (ml/kg)</label>
+        <label>gew. Dosierung (mg/kg)</label>
       </div>
       <div class="col-sm-8">
         <input 
@@ -79,23 +79,24 @@
     </div>
 
     <!-- Konzentration -->
-    <div class="row" *ngIf="medi">
+    <div class="row" [hidden]="!((mediObservable | async)?.Concentration > 0)">
       <div class="col-sm-4">
         <label>Konzentration</label>  
       </div>
 
       <div class="col-sm-8">
-        {{medi.Concentration}}
+        {{(mediObservable | async)?.Concentration}} mg/{{(mediObservable | async)?.Unit}}
       </div>
     </div>
 
-    <div class="row" *ngIf="medi">
+    <div class="row" [hidden]="!((mediObservable | async)?.Concentration > 0)">
       <div class="col-sm-4">
         <label>Mögliche Dosierung</label>  
       </div>
 
       <div class="col-sm-8">
-        von {{medi.MinDose}} bis {{medi.MaxDose}}
+        von {{(mediObservable | async)?.MinDose}} bis {{(mediObservable | async)?.MaxDose}}
+        mg/{{(mediObservable | async)?.Unit}}
       </div>
     </div>
 
@@ -113,22 +114,22 @@
     <!-- Dosierung -->
     <div class="row" *ngIf="dose">
       <div class="col-sm-4">
-        <label>Dosierung</label>  
+        <label>gew. Dosierung</label>  
       </div>
 
       <div class="col-sm-8">
-        {{dose}} ml/kg
+        {{dose}} mg/kg
       </div>
     </div>
 
     <!-- Menge -->
-    <div class="row" *ngIf="quantity() && medi">
+    <div class="row resultline" *ngIf="quantity() && ((mediObservable | async)?.Concentration > 0)">
       <div class="col-sm-4">
         <label>Menge</label>   
       </div>
 
       <div class="col-sm-8">
-        <b>{{quantity()}} {{medi.Unit}}</b>
+        <b>{{quantity()}} {{(mediObservable | async)?.Unit}}</b>
       </div>
     </div>
 

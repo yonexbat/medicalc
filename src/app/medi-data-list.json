@@ -65,11 +65,20 @@
         "Unit" : "ml"        
     },
 
+   {   
+        "Id" : "13", 
+        "Name" : "Wismutaluminat", 
+        "Concentration" : "7",
+        "MinDose" : "1",
+        "MaxDose" : "100",
+        "Unit" : "Ampulle"        
+    },    
+
     
     {   
         "Id" : "7", 
         "Name" : "Meloxicam", 
-        "Concentration" : "23",
+        "Concentration" : "87",
         "MinDose" : "1",
         "MaxDose" : "100",
         "Unit" : "ml"        
@@ -79,7 +88,7 @@
     {   
         "Id" : "8", 
         "Name" : "Glucose", 
-        "Concentration" : "23",
+        "Concentration" : "1",
         "MinDose" : "1",
         "MaxDose" : "100",
         "Unit" : "ml"        
@@ -89,7 +98,7 @@
     {   
         "Id" : "9", 
         "Name" : "Guajacol", 
-        "Concentration" : "23",
+        "Concentration" : "98",
         "MinDose" : "1",
         "MaxDose" : "100",
         "Unit" : "ml"        
@@ -99,7 +108,7 @@
     {   
         "Id" : "10", 
         "Name" : "Cocaine", 
-        "Concentration" : "23",
+        "Concentration" : "784569",
         "MinDose" : "1",
         "MaxDose" : "100",
         "Unit" : "ml"        
