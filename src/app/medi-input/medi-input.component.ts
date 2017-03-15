@@ -8,7 +8,8 @@ import {
   ChangeDetectionStrategy, 
   DoCheck, 
   ViewChild,
-  AfterViewChecked } from '@angular/core';
+  AfterViewChecked,
+  ApplicationRef } from '@angular/core';
 import { NgForm, FormControl, AbstractControl } from '@angular/forms';        
 import {MediserviceService} from './../mediservice.service';
 import {Observable} from 'rxjs/Observable';
@@ -39,6 +40,8 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
   medi: MediData;
   mediName: string;
   medisForMediName: Observable<MediData[]>;  
+  medisForMediNameArray: MediData[];
+
   private mediNameSubject = new Subject<string>(); 
 
   formFieldErrors = {
@@ -63,7 +66,10 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
       .catch(error => {
         console.log(error);
         return Observable.of<MediData[]>([]);
-      });      
+      });
+    this.medisForMediName.subscribe(medis => {
+      this.medisForMediNameArray = medis;
+    });     
   }
  
   ngDoCheck() {
@@ -73,8 +79,30 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
   onMediSelected(mediName: string)
   {
     this.mediName = mediName;
-    this.mediNameSubject.next(mediName);
-    
+    this.mediNameSubject.next(mediName);    
+  }
+
+  onMediIdSelected(eventArgs)
+  {
+    let id : number;
+    id = eventArgs.target.value;
+    if(id > 0)
+    {
+        this.medisForMediNameArray.forEach(medi => {
+          if(medi.Id == id)
+          {
+            this.medi = medi;
+          }
+        });
+
+        this.mediInputService.getMedi(id).then(medi => {
+            //this.medi = medi;
+          
+          
+        }).catch(error => {alert(error);
+        
+      });
+    }
   }
 
   ngAfterViewChecked() {
@@ -120,9 +148,9 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
   }
 
   quantity() : number {
-    if(this.medi != null )
+    if(this.medi != null && this.dose && this.dose != 0)
     {
-      return this.dose*this.weight*this.medi.Concentration;  
+      return this.dose*this.weight*1/this.medi.Concentration;  
     }
     return null;
   }

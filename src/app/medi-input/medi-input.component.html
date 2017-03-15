@@ -18,8 +18,8 @@
         <label>Konzentration</label>
       </div>
       <div class="col-sm-8">
-        <select>
-          <option *ngFor="let medi of medisForMediName | async" [ngValue]="medi.Id">{{medi.Concentration}} mg / {{medi.Unit}} </option>
+        <select  name="mediId"   (change)="onMediIdSelected($event)">
+          <option *ngFor="let medi of medisForMediName | async" [ngValue]="medi.Id" value="{{medi.Id}}">{{medi.Concentration}} mg / {{medi.Unit}} </option>
         </select>       
       </div>
     </div>

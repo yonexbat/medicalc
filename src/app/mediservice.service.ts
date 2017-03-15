@@ -26,6 +26,21 @@ export class MediserviceService {
   }
 
 
+  public getMedi(id: number) : Promise<MediData>
+  {
+        return this.http
+               .get(this.url)
+               .map(response => { 
+                  let data = response.json();
+                  let medidata = data as MediData[];
+                  return medidata;
+                })
+                .concatMap(array => Observable.from(array))
+                .filter(medi => medi.Id === id)
+                .first()
+                .toPromise();
+  }
+
  
   public getMedisForMediName(mediName: string) : Observable<MediData[]> 
   {  
