@@ -171,22 +171,7 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
     }
   }
 
-    /*
-    if(doseControl && doseControl.dirty)
-    {
-      if(doseControl && doseControl.dirty && currentMedi)
-      {                      
-          
-          if(doseControl < currentMedi.MinDose)
-          {
-            this.formFieldErrors["dose"] = `Gewünschte Dosierung muss grösser als ${currentMedi.MinDose} sein`; 
-          }
-          if(doseControl > currentMedi.MaxDose
-          )
-          {
-            this.formFieldErrors["dose"] = `Gewünschte Dosierung muss kleiner als ${currentMedi.MaxDose} sein`; 
-          }
-      }*/
+    
 
 
   quantity() : number {
