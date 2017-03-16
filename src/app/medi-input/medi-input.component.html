@@ -19,6 +19,7 @@
       </div>
       <div class="col-sm-8">
         <select  name="mediId"   (change)="onMediIdSelected($event)">
+          <option value="0">bitte wählen</option>
           <option *ngFor="let medi of medisForMediName | async" [ngValue]="medi.Id" [value]="medi.Id">{{medi.Concentration}} mg/{{medi.Unit}} </option>
         </select>       
       </div>
@@ -53,7 +54,7 @@
           [(ngModel)]="dose" 
           placeholder="Dosierung" 
           type="number" 
-          name="dose"
+          name="dose"         
           required/>
 
          <div *ngIf="formFieldErrors.dose" class="alert alert-danger">
@@ -89,17 +90,6 @@
       </div>
     </div>
 
-    <div class="row" [hidden]="!((mediObservable | async)?.Concentration > 0)">
-      <div class="col-sm-4">
-        <label>Mögliche Dosierung</label>  
-      </div>
-
-      <div class="col-sm-8">
-        von {{(mediObservable | async)?.MinDose}} bis {{(mediObservable | async)?.MaxDose}}
-        mg/{{(mediObservable | async)?.Unit}}
-      </div>
-    </div>
-
     <!-- Gewicht -->
     <div class="row" *ngIf="weight">
       <div class="col-sm-4">
@@ -119,6 +109,18 @@
 
       <div class="col-sm-8">
         {{dose}} mg/kg
+      </div>
+    </div>
+
+    <!-- Min Max Dosierung -->
+    <div class="row" [hidden]="!((mediObservable | async)?.Concentration > 0)">
+      <div class="col-sm-4">
+        <label>Mögliche Dosierung</label>  
+      </div>
+
+      <div class="col-sm-8">
+        von {{(mediObservable | async)?.MinDose}} bis {{(mediObservable | async)?.MaxDose}}
+        mg/kg
       </div>
     </div>
 

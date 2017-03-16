@@ -10,7 +10,7 @@ import {
   ViewChild,
   AfterViewChecked,
   ApplicationRef } from '@angular/core';
-import { NgForm, FormControl, AbstractControl } from '@angular/forms';        
+import { NgForm, FormControl, AbstractControl, FormGroup } from '@angular/forms';        
 import {MediserviceService} from './../mediservice.service';
 import {Observable} from 'rxjs/Observable';
 import {Subject } from 'rxjs/Subject';
@@ -38,7 +38,6 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
 
   weight: number;
   dose: number;
-  medi: MediData;
   mediObservable = new BehaviorSubject<MediData>(null);
   mediName: string;
   medisForMediName: Observable<MediData[]>;
@@ -104,20 +103,15 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
     let id : number;
     id = eventArgs.target.value;
     if(id > 0)
-    {
-        this.medisForMediNameArray.forEach(medi => {
-          if(medi.Id == id)
-          {
-            this.medi = medi;
-          }
-        });
-
+    {       
         this.mediInputService.getMedi(id).then(medi => {
-          this.mediObservable.next(medi);
-          this.medi = medi;                    
+          this.mediObservable.next(medi);                 
         }).catch(error => {
             alert(error);        
         });
+    }
+    else {
+      this.mediObservable.next(null);
     }
   }
 
@@ -138,30 +132,62 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
     if (!this.currentForm) { 
       return; 
     }
-    const form = this.currentForm.form;
-
-    //Iterate over all fields
-    for (const fieldName  in this.formFieldErrors) {
-      
-      //debugger;
-      //Reset errormessage to empty string
-      this.formFieldErrors[fieldName] = '';
-      const control : AbstractControl = form.get(fieldName);
-      if(control && control.dirty)
-      {
-      
-         for (const key in control.errors) {
-            switch(key)
-            {
-              case 'required':
-                this.formFieldErrors[fieldName] += 'Feld ' + fieldName + ' ist ein Mussfeld'; 
-                break;
-            }           
-         }        
-      }
-    }    
-   
+    this.validate();     
   }
+
+  validate() {
+    const form : FormGroup  = this.currentForm.form; 
+    let  currentMedi : MediData = this.mediObservable.getValue();
+
+    //Validate Gewicht
+    const weightControl : AbstractControl = form.get("weight");
+    this.formFieldErrors["weight"] = null;
+    if(weightControl && weightControl.dirty && weightControl.errors && weightControl.errors["required"])
+    {
+      this.formFieldErrors["weight"] = "Gewicht ist ein Mussfeld";  
+    }
+
+    //Validate Dose
+    let doseControl = form.get("dose");
+    this.formFieldErrors["dose"] = null;
+    if(doseControl && doseControl.dirty)
+    {
+      let doseValue : Number = doseControl.value;
+      if(!(doseValue > 0))
+      {
+          this.formFieldErrors["dose"] = `Gewünschte Dosierung ist ein Mussfeld`;
+      } else if(currentMedi)
+      {
+          if(doseValue < currentMedi.MinDose)
+          {
+            this.formFieldErrors["dose"] = `Gewünschte Dosierung muss grösser als ${currentMedi.MinDose} sein`; 
+          }
+          if(doseValue > currentMedi.MaxDose
+          )
+          {
+            this.formFieldErrors["dose"] = `Gewünschte Dosierung muss kleiner als ${currentMedi.MaxDose} sein`; 
+          }
+      }
+    }
+  }
+
+    /*
+    if(doseControl && doseControl.dirty)
+    {
+      if(doseControl && doseControl.dirty && currentMedi)
+      {                      
+          
+          if(doseControl < currentMedi.MinDose)
+          {
+            this.formFieldErrors["dose"] = `Gewünschte Dosierung muss grösser als ${currentMedi.MinDose} sein`; 
+          }
+          if(doseControl > currentMedi.MaxDose
+          )
+          {
+            this.formFieldErrors["dose"] = `Gewünschte Dosierung muss kleiner als ${currentMedi.MaxDose} sein`; 
+          }
+      }*/
+
 
   quantity() : number {
     if(this.mediObservable.getValue() != null && this.dose && this.dose != 0)
