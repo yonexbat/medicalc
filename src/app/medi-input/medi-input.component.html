@@ -20,7 +20,7 @@
       <div class="col-sm-8">
         <select  name="mediId"   (change)="onMediIdSelected($event)">
           <option value="0">bitte wählen</option>
-          <option *ngFor="let medi of medisForMediName | async" [ngValue]="medi.Id" [value]="medi.Id">{{medi.Concentration}} mg/{{medi.Unit}} </option>
+          <option *ngFor="let medi of medisForMediName | async" [ngValue]="medi.Id" [value]="medi.Id">{{medi.Concentration}} {{medi.DenominatorUnit}}/{{medi.Unit}} </option>
         </select>       
       </div>
     </div>
@@ -47,11 +47,15 @@
     <!-- Dosierung -->
     <div class="row">
       <div class="col-sm-4">
-        <label>gew. Dosierung (mg/kg)</label>
+        <label>gew. Dosierung ({{(mediObservable | async)?.DenominatorUnit}}/kg)</label>
       </div>
       <div class="col-sm-8">
         <input 
-          [(ngModel)]="dose" 
+          [(ngModel)]="dose"
+          
+          ngModel
+          #mory="ngModel" 
+          
           placeholder="Dosierung" 
           type="number" 
           name="dose"         
@@ -64,6 +68,11 @@
          <div *ngIf="formFieldErrors.dose" class="alert alert-danger">
           {{ formFieldErrors.dose }}
         </div>
+
+        <div *ngIf="mory.errors" class="error">
+          Name is required
+        </div>
+
       </div>
     </div>    
 
@@ -90,7 +99,7 @@
       </div>
 
       <div class="col-sm-8">
-        {{(mediObservable | async)?.Concentration}} mg/{{(mediObservable | async)?.Unit}}
+        {{(mediObservable | async)?.Concentration}} {{(mediObservable | async)?.DenominatorUnit}}/{{(mediObservable | async)?.Unit}}
       </div>
     </div>
 
@@ -112,7 +121,7 @@
       </div>
 
       <div class="col-sm-8">
-        {{dose}} mg/kg
+        {{dose}}  {{(mediObservable | async)?.DenominatorUnit}}/kg
       </div>
     </div>
 
@@ -124,7 +133,7 @@
 
       <div class="col-sm-8">
         von {{(mediObservable | async)?.MinDose}} bis {{(mediObservable | async)?.MaxDose}}
-        mg/kg
+        {{(mediObservable | async)?.DenominatorUnit}}/kg
       </div>
     </div>
 
