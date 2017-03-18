@@ -26,24 +26,8 @@ export class MediserviceService {
   }
 
 
-  public getMedi(id: number) : Promise<MediData>
+  private getMediObjeservable() : Observable<MediData>
   {
-        return this.http
-               .get(this.url)
-               .map(response => { 
-                  let data = response.json();
-                  let medidata = data as MediData[];
-                  return medidata;
-                })
-                .concatMap(array => Observable.from(array))
-                .filter(medi => medi.Id === id)
-                .first()
-                .toPromise();
-  }
-
- 
-  public getMedisForMediName(mediName: string) : Observable<MediData[]> 
-  {  
       return this.http
                .get(this.url)
                .map(response => { 
@@ -52,6 +36,20 @@ export class MediserviceService {
                   return medidata;
                 })
                 .concatMap(array => Observable.from(array))
+  }
+
+  public getMedi(id: number) : Promise<MediData>
+  {
+        return this.getMediObjeservable()
+                .filter(medi => medi.Id === id)
+                .first()
+                .toPromise();
+  }
+
+ 
+  public getMedisForMediName(mediName: string) : Observable<MediData[]> 
+  {  
+      return this.getMediObjeservable()
                 .filter(medi => medi.Name == mediName)
                 .toArray();
   }  
@@ -59,14 +57,7 @@ export class MediserviceService {
   public searchMediData(searchtearm: string) : Observable<string[]> 
   {  
 
-    return this.http
-               .get(this.url)
-               .map(response => { 
-                  let data = response.json();
-                  let medidata = data as MediData[];
-                  return medidata;
-                })
-                .concatMap(array => Observable.from(array))
+    return this.getMediObjeservable()
                 .groupBy(medi => medi.Name)
                 .map(mediGroup => mediGroup.key)
                 .filter(mediName => {
@@ -74,6 +65,16 @@ export class MediserviceService {
                         let mediNameUpperCase = mediName.toUpperCase();                       
                         return mediNameUpperCase.includes(searchTearmUpperCase);
                  })
-                .toArray();
+                .take(6)
+                .toArray()
+                .map(medinameArray => {                   
+                    let sortedArray : string[]  = medinameArray.sort();
+                    if(sortedArray.length > 5)
+                    {
+                      sortedArray.pop();
+                      sortedArray.push("...");
+                    }
+                    return sortedArray;
+                });                
   }
 }
