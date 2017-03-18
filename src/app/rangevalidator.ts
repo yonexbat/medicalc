@@ -14,10 +14,26 @@ export class RangeValidator implements Validator {
   @Input('from') public from: number;
   @Input('to') public to: number;
 
-  validate(c: FormControl) : Boolean {
+  validate(c: FormControl) : { [key:string]:boolean; } {
+
     let from = this.from;
     let to = this.to;
-    debugger;
-    return true;
+    let value = c.value;
+
+    let tooSmall = false;
+    let tooBig = false;
+        
+
+    if(value < from)
+    {
+        tooSmall = true;
+    }
+    if(value > to)
+    {
+      tooBig = true;
+    }
+
+    
+    return {"tooSmall" : tooSmall, "tooBig" : tooBig};
   }
 }
