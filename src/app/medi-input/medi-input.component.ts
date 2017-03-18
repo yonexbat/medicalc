@@ -163,6 +163,28 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
     //Validate Dose
     let doseControl = form.get("dose");
     this.formFieldErrors["dose"] = null;
+    if(doseControl && doseControl.dirty)
+    {
+      let doseValue : Number = doseControl.value;
+      if(!(doseValue > 0))
+      {
+          this.formFieldErrors["dose"] = `Gewünschte Dosierung ist ein Mussfeld`;
+      } else if(currentMedi)
+      {
+          if(doseValue < currentMedi.MinDose)
+          {
+            this.formFieldErrors["dose"] = `Gewünschte Dosierung muss grösser als ${currentMedi.MinDose} sein`; 
+          }
+          if(doseValue > currentMedi.MaxDose
+          )
+          {
+            this.formFieldErrors["dose"] = `Gewünschte Dosierung muss kleiner als ${currentMedi.MaxDose} sein`; 
+          }
+      }
+   }
+      /*
+    let doseControl = form.get("dose");
+    this.formFieldErrors["dose"] = null;
     if(currentMedi && doseControl && doseControl.dirty && doseControl.hasError("tooSmall"))
     {
       this.formFieldErrors["dose"] = `Gewünschte Dosierung muss grösser als ${currentMedi.MinDose} sein`; 
@@ -170,7 +192,7 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
     if(currentMedi && doseControl && doseControl.dirty && doseControl.hasError("tooBig"))
     {
       this.formFieldErrors["dose"] = `Gewünschte Dosierung muss kleiner als ${currentMedi.MaxDose} sein`;  
-    }       
+    }   */    
   }
 
     

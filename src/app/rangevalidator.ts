@@ -27,12 +27,10 @@ export class RangeValidator implements Validator {
     if(from && (value < from))
     {
         tooSmall = true;
-        debugger;
     }
     if(to && (value > to))
     {
       tooBig = true;
-      debugger;
     }
 
     
