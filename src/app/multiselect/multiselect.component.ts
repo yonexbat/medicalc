@@ -25,7 +25,7 @@ export class MultiselectComponent implements OnInit {
   private mediSearchTearm = new Subject<string>();
   mediName: string;
 
-  @Output() onMediSelected = new EventEmitter<string>();
+  @Output() onMediNameSelected = new EventEmitter<string>();
 
   constructor(private mediInputService: MediserviceService) { }
 
@@ -69,7 +69,7 @@ export class MultiselectComponent implements OnInit {
   {
     this.mediName = medi;
     this.mediSearchTearm.next('');
-    this.onMediSelected.emit(medi);
+    this.onMediNameSelected.emit(medi);
   }
 
 }

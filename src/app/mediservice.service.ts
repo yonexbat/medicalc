@@ -52,7 +52,7 @@ export class MediserviceService {
       return this.getMediObjeservable()
                 .filter(medi => medi.Name == mediName)
                 .toArray();
-  }  
+  }   
 
   public searchMediData(searchtearm: string) : Observable<string[]> 
   {  

@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { MediInputComponent } from './medi-input/medi-input.component';
 import { MultiselectComponent } from './multiselect/multiselect.component';
+import { RangeValidator} from './rangevalidator';
 
 @NgModule({
   declarations: [
     AppComponent,
     MediInputComponent,
-    MultiselectComponent
+    MultiselectComponent,
+    RangeValidator
   ],
   imports: [
     BrowserModule,

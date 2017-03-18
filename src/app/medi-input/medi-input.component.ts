@@ -40,8 +40,7 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
   dose: number;
   mediObservable = new BehaviorSubject<MediData>(null);
   mediName: string;
-  medisForMediName: Observable<MediData[]>;
-   
+  medisForMediName: Observable<MediData[]>;     
   medisForMediNameArray: MediData[];
 
   private mediNameSubject = new Subject<string>(); 
@@ -86,13 +85,27 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
       }
 
     });     
+
+    this.mediObservable.subscribe(medi => {
+      this.onRealMediSelected(medi);
+    });
+  }
+
+
+  private onRealMediSelected(medi: MediData)
+  {
+      let doseControl : AbstractControl = this.currentForm.form.get("dose");
+      if(doseControl != null)
+      {
+        doseControl.updateValueAndValidity();
+      }
   }
  
   ngDoCheck() {
     //debugger;
   }
 
-  onMediSelected(mediName: string)
+  onMediNameSelected(mediName: string)
   {
     this.mediName = mediName;
     this.mediNameSubject.next(mediName);    

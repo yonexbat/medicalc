@@ -8,7 +8,7 @@
         <label>Medikament</label>
       </div>
       <div class="col-sm-8">
-        <app-multiselect (onMediSelected)="onMediSelected($event)"></app-multiselect>       
+        <app-multiselect (onMediNameSelected)="onMediNameSelected($event)"></app-multiselect>       
       </div>
     </div>
 
@@ -55,7 +55,11 @@
           placeholder="Dosierung" 
           type="number" 
           name="dose"         
-          required/>
+          required
+          validateRange="aninput"
+          [from]="(mediObservable | async)?.MinDose"
+          [to]="(mediObservable | async)?.MaxDose"
+          />
 
          <div *ngIf="formFieldErrors.dose" class="alert alert-danger">
           {{ formFieldErrors.dose }}
