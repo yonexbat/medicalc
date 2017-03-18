@@ -24,13 +24,15 @@ export class RangeValidator implements Validator {
     let tooBig = false;
         
 
-    if(value < from)
+    if(from && (value < from))
     {
         tooSmall = true;
+        debugger;
     }
-    if(value > to)
+    if(to && (value > to))
     {
       tooBig = true;
+      debugger;
     }
 
     

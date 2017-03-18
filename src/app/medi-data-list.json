@@ -5,114 +5,135 @@
         "Concentration" : "23",
         "MinDose" : "1",
         "MaxDose" : "100",
-        "Unit" : "ml"
+        "Unit" : "ml",
+        "DenominatorUnit": "mg"
     },
 
     {   
-        "Id" : "11", 
+        "Id" : "2", 
         "Name" : "Afoxolaner", 
         "Concentration" : "4",
         "MinDose" : "1",
         "MaxDose" : "100",
-        "Unit" : "ml"
+        "Unit" : "ml",
+        "DenominatorUnit": "mg"
     },
     
     {   
-        "Id" : "2", 
+        "Id" : "3", 
         "Name" : "Aminoacridin", 
         "Concentration" : "23",
         "MinDose" : "1",
         "MaxDose" : "100",
-        "Unit" : "ml"        
+        "Unit" : "ml",
+        "DenominatorUnit": "mg"        
     },    
 
     {   
-        "Id" : "3", 
+        "Id" : "4", 
         "Name" : "Magnesiumsulfat", 
         "Concentration" : "23",
         "MinDose" : "1",
         "MaxDose" : "100",
-        "Unit" : "ml"        
-    },
-
-    
-    {   
-        "Id" : "4", 
-        "Name" : "Maropitant", 
-        "Concentration" : "23",
-        "MinDose" : "1",
-        "MaxDose" : "100",
-        "Unit" : "ml"        
+        "Unit" : "ml" ,
+        "DenominatorUnit": "mg"       
     },
 
     
     {   
         "Id" : "5", 
+        "Name" : "Maropitant", 
+        "Concentration" : "23",
+        "MinDose" : "1",
+        "MaxDose" : "100",
+        "Unit" : "ml",
+        "DenominatorUnit": "mg"        
+    },    
+    {   
+        "Id" : "6", 
         "Name" : "Fenta", 
         "Concentration" : "23",
         "MinDose" : "1",
         "MaxDose" : "100",
-        "Unit" : "ml"        
+        "Unit" : "ml",
+        "DenominatorUnit": "mg"        
     },
-
     
     {   
-        "Id" : "6", 
+        "Id" : "7", 
         "Name" : "Wismutaluminat", 
         "Concentration" : "23",
         "MinDose" : "1",
         "MaxDose" : "100",
-        "Unit" : "ml"        
+        "Unit" : "ml",
+        "DenominatorUnit": "mg"        
     },
 
    {   
-        "Id" : "13", 
+        "Id" : "8", 
         "Name" : "Wismutaluminat", 
         "Concentration" : "7",
         "MinDose" : "1",
         "MaxDose" : "100",
-        "Unit" : "Ampulle"        
+        "Unit" : "Ampulle",
+        "DenominatorUnit": "mg"        
     },    
 
     
     {   
-        "Id" : "7", 
+        "Id" : "9", 
         "Name" : "Meloxicam", 
         "Concentration" : "87",
         "MinDose" : "1",
         "MaxDose" : "100",
-        "Unit" : "ml"        
-    },
-    
-    
+        "Unit" : "ml",
+        "DenominatorUnit": "mg"        
+    },    
     {   
-        "Id" : "8", 
+        "Id" : "10", 
         "Name" : "Glucose", 
         "Concentration" : "1",
         "MinDose" : "1",
         "MaxDose" : "100",
-        "Unit" : "ml"        
-    },
-
-    
+        "Unit" : "ml",
+        "DenominatorUnit": "mg"        
+    },    
     {   
-        "Id" : "9", 
+        "Id" : "11", 
         "Name" : "Guajacol", 
         "Concentration" : "98",
         "MinDose" : "1",
         "MaxDose" : "100",
-        "Unit" : "ml"        
-    },
-    
-    
+        "Unit" : "ml" ,
+        "DenominatorUnit": "mg"       
+    },        
     {   
-        "Id" : "10", 
+        "Id" : "12", 
         "Name" : "Cocaine", 
         "Concentration" : "784569",
         "MinDose" : "1",
         "MaxDose" : "100",
-        "Unit" : "ml"        
-    }        
+        "Unit" : "ml" ,
+        "DenominatorUnit": "mg"       
+    },        
+    {   
+        "Id" : "13", 
+        "Name" : "Cocaine", 
+        "Concentration" : "23.32",
+        "MinDose" : "1",
+        "MaxDose" : "20",
+        "Unit" : "ml" ,
+        "DenominatorUnit": "ug"       
+    },      
+    {   
+        "Id" : "14", 
+        "Name" : "Cocaine", 
+        "Concentration" : "66.32",
+        "MinDose" : "21",
+        "MaxDose" : "100",
+        "Unit" : "ml" ,
+        "DenominatorUnit": "ug"       
+    }                   
 
 
 ]

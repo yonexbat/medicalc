@@ -6,6 +6,7 @@ export class MediData {
     MinDose: number;
     MaxDose: number;
     Unit: string;
+    DenominatorUnit: string;
 
     constructor(
         Id: number, 
@@ -13,7 +14,8 @@ export class MediData {
         Concentration: number, 
         MinDose: number, 
         MaxDose: number,
-        Unit: string)
+        Unit: string,
+        DenominatorUnit: string)
     {
         this.Id = Id;
         this.Name = Name;
@@ -21,5 +23,6 @@ export class MediData {
         this.MinDose = MinDose;
         this.MaxDose = MaxDose;
         this.Unit = Unit;
+        this.DenominatorUnit = DenominatorUnit;
     }
 }
