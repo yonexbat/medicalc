@@ -65,7 +65,7 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
         return Observable.of<MediData[]>([]);
       });
 
-    //When Medis for agent arrive  
+    //When data for medi name arrives.  
     this.medisForMediName.subscribe(medis => {
       this.mediIdToMediMap = { } 
       medis.forEach(medi => {
