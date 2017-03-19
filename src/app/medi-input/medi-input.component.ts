@@ -38,17 +38,11 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
 
   weight: number;
   dose: number;
-  mediObservable = new BehaviorSubject<MediData>(null);
   medi: MediData;
   mediName: string;
   medisForMediName: Observable<MediData[]>;   
   mediIdToMediMap: { [key:number]: MediData; } = {};
   mediNameSubject = new Subject<string>(); 
-
-  formFieldErrors = {
-    'weight': '',
-    'dose': ''
-  };
 
   @ViewChild('inputForm') currentForm: NgForm;
   formSubscribed: boolean = false;
@@ -73,7 +67,7 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
 
     //When Medis for agent arrive  
     this.medisForMediName.subscribe(medis => {
-
+      this.mediIdToMediMap = { } 
       medis.forEach(medi => {
         this.mediIdToMediMap[medi.Id] = medi;
       });
@@ -81,11 +75,9 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
       if(medis && medis.length === 1)
       {
         this.medi = medis[0];
-        this.mediObservable.next(medis[0]); 
       }
       else {
         this.medi = null;
-        this.mediObservable.next(null);
       }
 
     });     
@@ -108,22 +100,11 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
     id = eventArgs.target.value;
     if(id > 0)
     {     
-        this.medi = this.mediIdToMediMap[id]; 
-
-        this.mediInputService.getMedi(id).then(medi => {
-          this.mediObservable.next(medi);                 
-        }).catch(error => {
-            alert(error);        
-        });
+        this.medi = this.mediIdToMediMap[id];         
     }
     else {
       this.medi = null;
-      this.mediObservable.next(null);
-    }
-
-    let form : FormGroup  = this.currentForm.form; 
-    let doseControl = form.get("dose");
-    doseControl.updateValueAndValidity();
+    }   
   }
 
   ngAfterViewChecked() {
@@ -142,7 +123,8 @@ export class MediInputComponent implements OnInit, DoCheck, AfterViewChecked {
     
     if (!this.currentForm) { 
       return; 
-    }    
+    }   
+     
   }
 
  quantity() : number {
