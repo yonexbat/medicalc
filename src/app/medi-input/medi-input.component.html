@@ -1,0 +1,155 @@
+<div>
+
+  <form  #inputForm="ngForm"  class="container-fluid">
+
+    <!-- Medikament -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Medikament</label>
+      </div>
+      <div class="col-sm-8">
+        <app-multiselect (onMediNameSelected)="onMediNameSelected($event)"></app-multiselect>       
+      </div>
+    </div>
+
+    <!-- Konzentration -->
+    <div class="row"  [hidden]="!((medisForMediName | async)?.length > 1)">
+      <div class="col-sm-4">
+        <label>Konzentration</label>
+      </div>
+      <div class="col-sm-8">
+        <select  name="mediId"   (change)="onMediIdSelected($event)">
+          <option value="0">bitte wählen</option>
+          <option *ngFor="let medi of medisForMediName | async" [ngValue]="medi.Id" [value]="medi.Id">{{medi.Concentration}} {{medi.DenominatorUnit}}/{{medi.Unit}} </option>
+        </select>       
+      </div>
+    </div>
+
+    <!-- Gewicht -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Gewicht (kg)</label>
+      </div>
+      <div class="col-sm-8">
+        <input  [(ngModel)]="weight" 
+                placeholder="Gewicht" 
+                type="number" 
+                name="weight"
+                required/>
+        
+        <div *ngIf="formFieldErrors.weight" class="alert alert-danger">
+          {{ formFieldErrors.weight }}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Dosierung -->
+    <div class="row">
+      <div class="col-sm-4">
+        <label>gew. Dosierung ({{(mediObservable | async)?.DenominatorUnit}}/kg)</label>
+      </div>
+      <div class="col-sm-8">
+        <input 
+          [(ngModel)]="dose"
+          
+          ngModel
+          #mory="ngModel" 
+          
+          placeholder="Dosierung" 
+          type="number" 
+          name="dose"         
+          required
+          validateRange="aninput"
+          [from]="(mediObservable | async)?.MinDose"
+          [to]="(mediObservable | async)?.MaxDose"
+          />
+
+         <div *ngIf="formFieldErrors.dose" class="alert alert-danger">
+          {{ formFieldErrors.dose }}
+        </div>
+
+        <div *ngIf="mory.errors" class="error">
+          Name is required
+        </div>
+
+      </div>
+    </div>    
+
+  </form>
+  <hr/>
+
+  <div class="container-fluid" >
+  
+    <!-- Mediname -->
+    <div class="row"  *ngIf="mediName">
+      <div class="col-sm-4">
+        <label>Medi</label>  
+      </div>
+
+      <div class="col-sm-8">
+        {{mediName}}
+      </div>
+    </div>
+
+    <!-- Konzentration -->
+    <div class="row" [hidden]="!((mediObservable | async)?.Concentration > 0)">
+      <div class="col-sm-4">
+        <label>Konzentration</label>  
+      </div>
+
+      <div class="col-sm-8">
+        {{(mediObservable | async)?.Concentration}} {{(mediObservable | async)?.DenominatorUnit}}/{{(mediObservable | async)?.Unit}}
+      </div>
+    </div>
+
+    <!-- Gewicht -->
+    <div class="row" *ngIf="weight">
+      <div class="col-sm-4">
+        <label>Gewicht</label>  
+      </div>
+
+      <div class="col-sm-8">
+        {{weight}} kg
+      </div>
+    </div>
+
+    <!-- Dosierung -->
+    <div class="row" *ngIf="dose">
+      <div class="col-sm-4">
+        <label>gew. Dosierung</label>  
+      </div>
+
+      <div class="col-sm-8">
+        {{dose}}  {{(mediObservable | async)?.DenominatorUnit}}/kg
+      </div>
+    </div>
+
+    <!-- Min Max Dosierung -->
+    <div class="row" [hidden]="!((mediObservable | async)?.Concentration > 0)">
+      <div class="col-sm-4">
+        <label>Mögliche Dosierung</label>  
+      </div>
+
+      <div class="col-sm-8">
+        von {{(mediObservable | async)?.MinDose}} bis {{(mediObservable | async)?.MaxDose}}
+        {{(mediObservable | async)?.DenominatorUnit}}/kg
+      </div>
+    </div>
+
+    <!-- Menge -->
+    <div class="row resultline" *ngIf="quantity() && ((mediObservable | async)?.Concentration > 0)">
+      <div class="col-sm-4">
+        <label>Menge</label>   
+      </div>
+
+      <div class="col-sm-8">
+        <b>{{quantity()}} {{(mediObservable | async)?.Unit}}</b>
+      </div>
+    </div>
+
+   
+
+  </div>
+
+</div>
