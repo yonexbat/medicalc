@@ -21,8 +21,7 @@ export class RangeValidator implements Validator {
     let value = c.value;
 
     let tooSmall = false;
-    let tooBig = false;
-        
+    let tooBig = false; 
 
     if(from && (value < from))
     {
