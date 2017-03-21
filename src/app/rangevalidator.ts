@@ -39,7 +39,6 @@ export class RangeValidator implements Validator {
 
     let tooSmall = false;
     let tooBig = false;
-    console.log(from, to);
 
     if (from && value && (value < from)) {
       tooSmall = true;
