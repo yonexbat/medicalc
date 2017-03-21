@@ -20,7 +20,10 @@
       <div class="col-sm-8">
         <select  name="mediId"   (change)="onMediIdSelected($event)">
           <option value="0">bitte wählen</option>
-          <option *ngFor="let medi of medisForMediName | async" [ngValue]="medi.Id" [value]="medi.Id">{{medi.Concentration}} {{medi.DenominatorUnit}}/{{medi.Unit}} </option>
+          <option *ngFor="let medi of medisForMediName | async" 
+                  [ngValue]="medi.Id" 
+                  [value]="medi.Id">{{medi.Concentration}} {{medi.DenominatorUnit}}/{{medi.Unit}} 
+          </option>
         </select>       
       </div>
     </div>
@@ -32,13 +35,14 @@
       </div>
       <div class="col-sm-8">
         <input  [(ngModel)]="weight" 
+                ngModel #weightControl="ngModel"    
                 placeholder="Gewicht" 
                 type="number" 
                 name="weight"
                 required/>
         
-        <div *ngIf="formFieldErrors.weight" class="alert alert-danger">
-          {{ formFieldErrors.weight }}
+        <div *ngIf="(weightControl.dirty || weightControl.touched) && weightControl.errors && weightControl.errors.required" class="alert alert-danger">
+              Gewicht ist ein Mussfeld
         </div>
 
       </div>
@@ -47,30 +51,36 @@
     <!-- Dosierung -->
     <div class="row">
       <div class="col-sm-4">
-        <label>gew. Dosierung ({{(mediObservable | async)?.DenominatorUnit}}/kg)</label>
+        <label>gew. Dosierung ({{(medi)?.DenominatorUnit}}/kg)</label>
       </div>
       <div class="col-sm-8">
         <input 
-          [(ngModel)]="dose"
-          
-          ngModel
-          #mory="ngModel" 
-          
+          [(ngModel)]="dose"          
+          ngModel #doseControl="ngModel"           
           placeholder="Dosierung" 
           type="number" 
           name="dose"         
-          required
-          validateRange="aninput"
-          [from]="(mediObservable | async)?.MinDose"
-          [to]="(mediObservable | async)?.MaxDose"
-          />
+          required   
+          validateRange
+          [from]="medi?.MinDose"  
+          [to]="medi?.MaxDose"     
+          />       
 
-         <div *ngIf="formFieldErrors.dose" class="alert alert-danger">
-          {{ formFieldErrors.dose }}
-        </div>
+        <div *ngIf="(doseControl.dirty || doseControl.touched)">
 
-        <div *ngIf="mory.errors" class="error">
-          Name is required
+            <div *ngIf="doseControl.errors && doseControl.errors.required" class="alert alert-danger">
+              Dosierung ist ein Mussfeld
+            </div>
+
+            <div *ngIf="doseControl.errors && doseControl.errors.tooBig" class="alert alert-danger">
+               Wert darf nicht grösser sein als {{medi?.MaxDose}}
+            </div> 
+                                                       
+
+           <div *ngIf="doseControl.errors && doseControl.errors.tooSmall" class="alert alert-danger">
+               Wert darf nicht kleiner sein als {{medi?.MinDose}}
+            </div>  
+                 
         </div>
 
       </div>
@@ -93,13 +103,13 @@
     </div>
 
     <!-- Konzentration -->
-    <div class="row" [hidden]="!((mediObservable | async)?.Concentration > 0)">
+    <div class="row" [hidden]="!((medi)?.Concentration > 0)">
       <div class="col-sm-4">
         <label>Konzentration</label>  
       </div>
 
       <div class="col-sm-8">
-        {{(mediObservable | async)?.Concentration}} {{(mediObservable | async)?.DenominatorUnit}}/{{(mediObservable | async)?.Unit}}
+        {{(medi)?.Concentration}} {{(medi)?.DenominatorUnit}}/{{(medi)?.Unit}}
       </div>
     </div>
 
@@ -121,30 +131,30 @@
       </div>
 
       <div class="col-sm-8">
-        {{dose}}  {{(mediObservable | async)?.DenominatorUnit}}/kg
+        {{dose}}  {{(medi)?.DenominatorUnit}}/kg
       </div>
     </div>
 
     <!-- Min Max Dosierung -->
-    <div class="row" [hidden]="!((mediObservable | async)?.Concentration > 0)">
+    <div class="row" [hidden]="!((medi)?.Concentration > 0)">
       <div class="col-sm-4">
         <label>Mögliche Dosierung</label>  
       </div>
 
       <div class="col-sm-8">
-        von {{(mediObservable | async)?.MinDose}} bis {{(mediObservable | async)?.MaxDose}}
-        {{(mediObservable | async)?.DenominatorUnit}}/kg
+        von {{(medi)?.MinDose}} bis {{(medi)?.MaxDose}}
+        {{(medi)?.DenominatorUnit}}/kg
       </div>
     </div>
 
     <!-- Menge -->
-    <div class="row resultline" *ngIf="quantity() && ((mediObservable | async)?.Concentration > 0)">
+    <div class="row resultline" *ngIf="quantity() && ((medi)?.Concentration > 0)">
       <div class="col-sm-4">
         <label>Menge</label>   
       </div>
 
       <div class="col-sm-8">
-        <b>{{quantity()}} {{(mediObservable | async)?.Unit}}</b>
+        <b>{{quantity()}} {{(medi)?.Unit}}</b>
       </div>
     </div>
 
