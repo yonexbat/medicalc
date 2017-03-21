@@ -20,7 +20,10 @@
       <div class="col-sm-8">
         <select  name="mediId"   (change)="onMediIdSelected($event)">
           <option value="0">bitte wählen</option>
-          <option *ngFor="let medi of medisForMediName | async" [ngValue]="medi.Id" [value]="medi.Id">{{medi.Concentration}} {{medi.DenominatorUnit}}/{{medi.Unit}} </option>
+          <option *ngFor="let medi of medisForMediName | async" 
+                  [ngValue]="medi.Id" 
+                  [value]="medi.Id">{{medi.Concentration}} {{medi.DenominatorUnit}}/{{medi.Unit}} 
+          </option>
         </select>       
       </div>
     </div>
@@ -57,7 +60,10 @@
           placeholder="Dosierung" 
           type="number" 
           name="dose"         
-          required          
+          required   
+          validateRange
+          [from]="medi?.MinDose"  
+          [to]="medi?.MaxDose"     
           />       
 
         <div *ngIf="(doseControl.dirty || doseControl.touched)">
@@ -66,11 +72,12 @@
               Dosierung ist ein Mussfeld
             </div>
 
-            <div *ngIf="medi && doseControl.value > medi.MaxDose" class="alert alert-danger">
+            <div *ngIf="doseControl.errors && doseControl.errors.tooBig" class="alert alert-danger">
                Wert darf nicht grösser sein als {{medi?.MaxDose}}
-            </div>                         
+            </div> 
+                                                       
 
-           <div *ngIf="medi && doseControl.value < medi.MinDose" class="alert alert-danger">
+           <div *ngIf="doseControl.errors && doseControl.errors.tooSmall" class="alert alert-danger">
                Wert darf nicht kleiner sein als {{medi?.MinDose}}
             </div>  
                  
