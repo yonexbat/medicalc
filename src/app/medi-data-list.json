@@ -1,16 +1,15 @@
 [
   
-{"Id"="3", "Name"="Fentanyl", "Concentration"="0.05", "MinDose"="0.05", "MaxDose"="0.1", "Unit"="ml", "DenominatorUnit"="mg"},
-{"Id"="4", "Name"="Butorphanol", "Concentration"="4", "MinDose"="0.1", "MaxDose"="0.4", "Unit"="ml", "DenominatorUnit"="mg"},
-{"Id"="5", "Name"="Morphin", "Concentration"="1", "MinDose"="0.05", "MaxDose"="0.1", "Unit"="ml", "DenominatorUnit"="mg"},
-{"Id"="6", "Name"="Buprenorphin", "Concentration"="0.3", "MinDose"="0.003", "MaxDose"="0.006", "Unit"="ml", "DenominatorUnit"="mg"},
-{"Id"="7", "Name"="Diazepam", "Concentration"="5", "MinDose"="0.1", "MaxDose"="0.5", "Unit"="ml", "DenominatorUnit"="mg"},
-{"Id"="8", "Name"="Amoxicillinum", "Concentration"="40", "MinDose"="10", "MaxDose"="10", "Unit"="Tabletten", "DenominatorUnit"="mg"},
-{"Id"="9", "Name"="Amoxicillinum", "Concentration"="200", "MinDose"="4", "MaxDose"="10", "Unit"="Tabletten", "DenominatorUnit"="mg"},
-{"Id"="10", "Name"="Test Cephalexin", "Concentration"="0.3", "MinDose"="1", "MaxDose"="5", "Unit"="ml", "DenominatorUnit"="ug"},
-{"Id"="11", "Name"="Test Cephalexin", "Concentration"="1", "MinDose"="6", "MaxDose"="10", "Unit"="ml", "DenominatorUnit"="ug"},
-{"Id"="12", "Name"="Test Cephalexin", "Concentration"="12", "MinDose"="15", "MaxDose"="20", "Unit"="ml", "DenominatorUnit"="ug"},
-{"Id"="13", "Name"="Test Cephalexin", "Concentration"="3", "MinDose"="25", "MaxDose"="30", "Unit"="Tabletten", "DenominatorUnit"="ug"},
-{"Id"="14", "Name"="Test Cephalexin", "Concentration"="7", "MinDose"="30", "MaxDose"="100", "Unit"="Tabletten", "DenominatorUnit"="ug"}
-
+{"Id":"3", "Name":"Fentanyl", "Concentration":"0.05", "MinDose":"0.05", "MaxDose":"0.1", "Unit":"ml", "DenominatorUnit":"mg"},
+{"Id":"4", "Name":"Butorphanol", "Concentration":"4", "MinDose":"0.1", "MaxDose":"0.4", "Unit":"ml", "DenominatorUnit":"mg"},
+{"Id":"5", "Name":"Morphin", "Concentration":"1", "MinDose":"0.05", "MaxDose":"0.1", "Unit":"ml", "DenominatorUnit":"mg"},
+{"Id":"6", "Name":"Buprenorphin", "Concentration":"0.3", "MinDose":"0.003", "MaxDose":"0.006", "Unit":"ml", "DenominatorUnit":"mg"},
+{"Id":"7", "Name":"Diazepam", "Concentration":"5", "MinDose":"0.1", "MaxDose":"0.5", "Unit":"ml", "DenominatorUnit":"mg"},
+{"Id":"8", "Name":"Amoxicillinum", "Concentration":"40", "MinDose":"10", "MaxDose":"10", "Unit":"Tabletten", "DenominatorUnit":"mg"},
+{"Id":"9", "Name":"Amoxicillinum", "Concentration":"200", "MinDose":"4", "MaxDose":"10", "Unit":"Tabletten", "DenominatorUnit":"mg"},
+{"Id":"10", "Name":"Test Cephalexin", "Concentration":"0.3", "MinDose":"1", "MaxDose":"5", "Unit":"ml", "DenominatorUnit":"ug"},
+{"Id":"11", "Name":"Test Cephalexin", "Concentration":"1", "MinDose":"6", "MaxDose":"10", "Unit":"ml", "DenominatorUnit":"ug"},
+{"Id":"12", "Name":"Test Cephalexin", "Concentration":"12", "MinDose":"15", "MaxDose":"20", "Unit":"ml", "DenominatorUnit":"ug"},
+{"Id":"13", "Name":"Test Cephalexin", "Concentration":"3", "MinDose":"25", "MaxDose":"30", "Unit":"Tabletten", "DenominatorUnit":"ug"},
+{"Id":"14", "Name":"Test Cephalexin", "Concentration":"7", "MinDose":"30", "MaxDose":"100", "Unit":"Tabletten", "DenominatorUnit":"ug"}
 ]
