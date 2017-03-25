@@ -3,7 +3,8 @@
           [(ngModel)] = "mediName" name="mediName"/>
 
 <ul class="dropdown-menu">
-  <li *ngFor="let mediName of medisFound | async" class="search-result" (click)="selectMedi(mediName)" >
+  <li class="dropdown-header">Wirkstoffe</li>
+  <li *ngFor="let mediName of (medisFound | async)" class="search-result" (click)="selectMedi(mediName)" >
     {{mediName}}
   </li>
 </ul>
