@@ -35,7 +35,7 @@ export class RangeValidator implements Validator {
 
     let from: number = this.from;
     let to: number = this.to;
-    let value: number = parseInt(c.value);
+    let value: number = parseFloat(c.value);
 
     let tooSmall = false;
     let tooBig = false;

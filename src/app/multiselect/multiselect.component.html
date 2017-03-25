@@ -1,6 +1,10 @@
+<div class="dropdown" [class.open]="((medisFound | async)?.length > 1)">
 <input #searchBox id="search-box" (keyup)="searchMedi(searchBox.value)" 
           [(ngModel)] = "mediName" name="mediName"/>
 
-<div *ngFor="let mediName of medisFound | async" class="search-result" (click)="selectMedi(mediName)" >
-  {{mediName}}
+<ul class="dropdown-menu">
+  <li *ngFor="let mediName of medisFound | async" class="search-result" (click)="selectMedi(mediName)" >
+    {{mediName}}
+  </li>
+</ul>
 </div>
