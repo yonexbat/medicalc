@@ -23,6 +23,7 @@ export class MediserviceService {
   constructor(http: Http) { 
     this.http = http;
     this.url = "./app/medi-data-list.json";
+    this.url = "/assets/jsons/medi-data-list.json"
   }
 
 
